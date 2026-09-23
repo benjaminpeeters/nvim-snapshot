@@ -59,7 +59,9 @@ nvim -S /abs/path/session.vim
 ```
 
 `--clean` keeps the client from loading your own config. Use a timeout on the
-call: a Neovim waiting at a prompt answers only once the prompt is dismissed.
+call: a Neovim that is busy, or sitting at a "Press ENTER" prompt, answers only
+once it is free again (an `input()` prompt does not block it). A request whose
+client gave up is dropped; it does not write the session later.
 
 Inside Neovim, the same call is `:lua print(require("nvim_snapshot").save("/abs/path/s.vim"))`.
 
